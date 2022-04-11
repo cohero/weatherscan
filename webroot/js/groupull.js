@@ -25,7 +25,15 @@ function MarqueeMan() {
 			$('#marqueeSevere').fadeIn(0)
 			$('.marqueeheadersevere').fadeIn(0) //#868686
 			$('#marqueeSevere').text(weatherInfo.bulletin.severewarnings[sidx].warningdesc)
-			weatherAudio.playwarningbeep()
+			if (weatherInfo.bulletin.severewarnings[sidx].warningname == "Tornado Warning") {
+				weatherAudio.playtornado()
+			} else if (weatherInfo.bulletin.severewarnings[sidx].warningname == "Severe Thunderstorm Warning") {
+				weatherAudio.playtstorm()
+			} else if (weatherInfo.bulletin.severewarnings[sidx].warningname == "Flash Flood Warning") {
+				weatherAudio.playfflood()
+			} else {
+				weatherAudio.playwarningbeep()
+			}
 			$('#marqueeSevere')
 				.marquee('destroy')
 				.marquee({speed: 170, delayBeforeStart: 1000, pauseOnHover: true, pauseOnCycle: true})
@@ -38,7 +46,15 @@ function MarqueeMan() {
 				$('.marqueeheadersevere').css("background","linear-gradient(to right, #d51e08 0, #b41a08 100%)")
 				$('.marqueeheadersevere').css("color","#DDDDDD")
 				$('.marqueeheadersevere').css("text-shadow","2px 2px 4px #000")
-				weatherAudio.playwarningbeep()
+				if (weatherInfo.bulletin.marqueewarnings[sidx].warningname == "Tornado Warning") {
+					weatherAudio.playtornado()
+				} else if (weatherInfo.bulletin.marqueewarnings[sidx].warningname == "Severe Thunderstorm Warning") {
+					weatherAudio.playtstorm()
+				} else if (weatherInfo.bulletin.marqueewarnings[sidx].warningname == "Flash Flood Warning") {
+					weatherAudio.playfflood()
+				} else {
+					weatherAudio.playwarningbeep()
+				}
 			}	else if (weatherInfo.bulletin.marqueewarnings[0].significance == "Y" || weatherInfo.bulletin.marqueewarnings[0].significance == "S") {
 				$('#marqueeSevere').css('background','linear-gradient(to right, #874901 0, #bb631a 100%)')
 				$('.marqueeheadersevere').css("background","linear-gradient(to right, #f2992e 0, #bb631a 100%)")

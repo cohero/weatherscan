@@ -173,8 +173,15 @@ function WeatherAudio() {
 	this.playwarningbeep = function () {
 		startPlaying(['/localvocals/narrations/warningbeep.wav'], false);
 	}
-
-
+	this.playtornado = function () {
+		startPlaying(['/localvocals/narrations/warningbeep.wav', '/localvocals/narrations/tornado.wav'], false);
+	}
+	this.playtstorm = function () {
+		startPlaying(['/localvocals/narrations/warningbeep.wav', '/localvocals/narrations/tstorm.wav'], false);
+	}
+	this.playfflood = function () {
+		startPlaying(['/localvocals/narrations/warningbeep.wav', '/localvocals/narrations/fflood.wav'], false);
+	}
 	this.playLocalRadar = function() {
 		startPlaying(['/localvocals/narrations/The_local_Doppler_radar.mp3'], false);
 	}
