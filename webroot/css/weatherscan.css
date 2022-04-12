@@ -4950,7 +4950,7 @@ label{
 }
 
 .info-slide .cityaccent.viii {
-  background-color: #001782
+  background-color: #001782;
   -webkit-mask-image: url(/images/airport-curve.svg);
   mask-image: url(/images/airport-curve.svg);
   -webkit-mask-size:200% 100%;
