@@ -570,7 +570,15 @@ var mainMap
 						$('.radar-content').fadeOut(500, function() {
 							$('.radar-slide').fadeOut(0);
 							currentDisplay = displays[keys[0]];
-							currentDisplay();
+							console.log("Se if still in SWM and Fadeout")
+							try{
+								currentDisplay();
+							} catch (e) {
+								if (e instanceof TypeError) {
+									console.log(e)
+									simulateReboot();
+								}
+							}
 						});
 					} else {
 						$('#info-slides-header .hscroller').empty();
