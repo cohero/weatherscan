@@ -20,6 +20,7 @@ function MarqueeMan() {
 			$('.marqueeheadersevere').css("color","#DDDDDD")
 			$('.marqueeheadersevere').css("text-shadow","2px 2px 4px #000")
 
+			//try {$('.marqueeheadersevere').text((weatherInfo.bulletin.severewarnings[sidx].warningname).toUpperCase() + ' ' + weatherInfo.bulletin.severewarnings[sidx].warningstatus);} catch(e) {console.log(e); MarqueeMan();}
 			$('.marqueeheadersevere').text((weatherInfo.bulletin.severewarnings[sidx].warningname).toUpperCase() + ' ' + weatherInfo.bulletin.severewarnings[sidx].warningstatus);
 			$('#arrow-img').fadeOut(0)
 			$('#marqueeSevere').fadeIn(0)
@@ -47,6 +48,9 @@ function MarqueeMan() {
 				})
 		} else if (weatherInfo.bulletin.marqueewarnings.length != 0){
 			if (weatherInfo.bulletin.severeweathermode == true) {
+				if (weatherInfo.bulletin.severewarnings.length < 1) {
+					weatherInfo.bulletin.severeweathermode = false
+				}
 				$('#marqueeSevere').css("background","linear-gradient(to right, #510d08 0, #b41a08 100%)")
 				$('.marqueeheadersevere').css("background","linear-gradient(to right, #d51e08 0, #b41a08 100%)")
 				$('.marqueeheadersevere').css("color","#DDDDDD")
@@ -91,6 +95,9 @@ function MarqueeMan() {
 			$('#marqueeSevere').fadeOut(0)
 			$('.marqueeheadersevere').fadeOut(0)
 			$('#arrow-img').fadeIn(0)
+			if (weatherInfo.bulletin.severewarnings.length < 1) {
+				weatherInfo.bulletin.severeweathermode = false
+			}
 		}
 
 	}

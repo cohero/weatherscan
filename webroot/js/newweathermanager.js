@@ -763,23 +763,24 @@ function grabSideandLowerBarData() {
 
         if (sret.length != 0) {
           weatherInfo.bulletin.severeweathermode = true;
-      	  sret.sort(function(a,b) {return a.priority - b.priority;
-        });
+      	  sret.sort(function(a,b) {return a.priority - b.priority;});
         
-        function pushSevereAlert(aai) {
-          $.getJSON('https://api.weather.com/v3/alerts/detail?alertId='+ ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].detailKey +'&format=json&language=en-US&apiKey=' + api_key, function(sdata) {
-            var severewarn = {warningname:"", warningdesc:"", warningstatus:""}
-            severewarn.warningname = ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].eventDescription
-            severewarn.warningstatus = ((ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].messageType == "Update") ? 'UPDATE' : (ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].messageType == "Cancel") ? "CANCELLATION" : "")
-            severewarn.warningdesc = sdata.alertDetail.texts[0].description
-            weatherInfo.bulletin.severewarnings.push(severewarn)
-            if (aai < (sret.length - 1)) {pushSevereAlert(aai + 1)};
-          });
-        };
+          function pushSevereAlert(aai) {
+            $.getJSON('https://api.weather.com/v3/alerts/detail?alertId='+ ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].detailKey +'&format=json&language=en-US&apiKey=' + api_key, function(sdata) {
+              var severewarn = {warningname:"", warningdesc:"", warningstatus:""}
+              severewarn.warningname = ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].eventDescription
+              severewarn.warningstatus = ((ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].messageType == "Update") ? 'UPDATE' : (ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].messageType == "Cancel") ? "CANCELLATION" : "")
+              severewarn.warningdesc = sdata.alertDetail.texts[0].description
+              weatherInfo.bulletin.severewarnings.push(severewarn)
+              if (aai < (sret.length - 1)) {pushSevereAlert(aai + 1)};
+            });
+          };
         
-        pushSevereAlert(0)
-      }
-    };
+          pushSevereAlert(0)
+        } else if (sret.length = 0) {
+          weatherInfo.bulletin.severeweathermode = false
+        }
+      };
   });
 }
 

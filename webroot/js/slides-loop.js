@@ -33,6 +33,7 @@ var mainMap
 				$('#current-info').fadeOut(0)
 				$('#current-info-severe').fadeIn(0)
 				$('#current-info-details').fadeIn(0)
+				if (loopssevereweathermode == false) {MarqueeMan()}
 				loopssevereweathermode = true
 				$('#minimap').fadeOut(0)
 				$('#minimap-title').fadeOut(0)
@@ -441,6 +442,7 @@ var mainMap
 							idx = 0
 							if (weatherInfo.bulletin.severeweathermode == true) {
 								//fade out radar if going back to bulletin. Don't fade if exiting.
+								if (weatherInfo.bulletin.severewarnings.length == 0) {weatherInfo.bulletin.severeweathermode = false}
 								if (weatherInfo.radarWinterLegend == true) {$('.radar-color-legend-winter').fadeOut(500)} else {$('.radar-color-legend').fadeOut(500)}
 								$('.radar-content').fadeOut(500, function() {
 									$('.radar-slide').fadeOut(0);
@@ -455,6 +457,7 @@ var mainMap
 								$('#current-info').fadeIn(0)
 								$('#current-info-severe').fadeOut(0)
 								$('#current-info-details').fadeOut(0)
+								if (loopssevereweathermode = true) {MarqueeMan()}
 								loopssevereweathermode = false
 								displayAtmospheric(0);
 								buildHeader();
