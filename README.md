@@ -16,5 +16,3 @@ Weatherscan emulator in HTML/JS/CSS
 
 ## Development
 Install the simulator like normal.
-
-Known Issue: The Weather Marquee during Weather Alerts can behave oddly by showing alerts with the wrong titles, wrong colors, not updating to show new alerts, and not cycling through multiple alerts correctly.

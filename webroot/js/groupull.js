@@ -38,7 +38,12 @@ function MarqueeMan() {
 				.marquee('destroy')
 				.marquee({speed: 170, delayBeforeStart: 1000, pauseOnHover: true, pauseOnCycle: true})
 				.on('finished', function(){
-					switchToWarningMarquee(((sidx < weatherInfo.bulletin.severewarnings.length) ? sidx + 1 : 0))
+					if (sidx < (weatherInfo.bulletin.severewarnings.length - 1)) {
+						switchToWarningMarquee((sidx + 1))
+					} else {
+						switchToWarningMarquee(0)
+					}
+					//switchToWarningMarquee(((sidx < weatherInfo.bulletin.severewarnings.length) ? sidx + 1 : 1))
 				})
 		} else if (weatherInfo.bulletin.marqueewarnings.length != 0){
 			if (weatherInfo.bulletin.severeweathermode == true) {
