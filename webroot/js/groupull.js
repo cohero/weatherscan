@@ -5,13 +5,37 @@ $(function(){
 	weatherAudio.playCallback = function(tags) {
 		$('.track-info').text('playing "' + tags.title + '" by ' + tags.artist);
 	}
-	$('#marquee2').text(weatherInfo.ad)
-	setTimeout(function() {
-		$('#marquee2').marquee({
-			speed: 170, pauseOnHover: true
-		});
-	}, 100)
 });
+
+function getTopNews() {
+	$.getJSON("https://newsapi.org/v2/top-headlines?sources=fox-news&apiKey=" + news_api_key, function(data) {
+	  for (let i = 0; i < 5; i++) {
+		var newsStories = {source:"",title:"",desc:"",url:"",author:"",pubdate:"",content:""}
+		newsStories.source = data.articles[i].source.name
+		newsStories.author = data.articles[i].author
+		newsStories.title = data.articles[i].title
+		newsStories.desc = data.articles[i].description
+		newsStories.url = data.articles[i].url
+		newsStories.pubdate = data.articles[i].publishedAt
+		newsStories.content = data.articles[i].content
+		weatherInfo.ad.push(newsStories)
+	  }
+	  var adMarquee = ""
+	  for (let i = 0; i < 5; i++) {
+		  adMarquee = adMarquee + weatherInfo.ad[i].title + ": " + weatherInfo.ad[i].desc + "  Read the story on " + weatherInfo.ad[i].source
+		  if (i < 4) {
+			  adMarquee = adMarquee + "    •    "
+		  }
+	  }
+	  $('#marquee2').text(adMarquee)
+	  setTimeout(function() {
+		  $('#marquee2').marquee({
+			  speed: 170, pauseOnHover: true
+		  });
+	  }, 100)
+	})
+  }
+
 function MarqueeMan() {
 	function switchToWarningMarquee(sidx) {
 		if (weatherInfo.bulletin.severewarnings.length != 0) {

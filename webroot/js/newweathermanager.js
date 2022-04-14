@@ -340,7 +340,7 @@ var weatherInfo = { currentCond: {
   radarTempUnavialable: false,
   radarWinterLegend: false,
   reboot: false,
-  ad: ad_scroll.channelInfo + ad_scroll.seperator + ad_scroll.ad1
+  ad: []
 }
 
 //start data functions. these are run after their respective location functions finish
@@ -582,6 +582,7 @@ function grabCitySlidesData() {
 }
 
 function grabSideandLowerBarData() {
+  getTopNews()
   weatherInfo.bulletin.marqueewarnings = [];
   weatherInfo.bulletin.severewarnings = [];
   var url = "https://api.weather.com/v3/aggcommon/v3alertsHeadlines;v3-wx-forecast-daily-5day;v3-wx-observations-current;v3-wx-forecast-hourly-2day?geocodes="
